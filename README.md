@@ -21,11 +21,11 @@ In this application, we will be using React (Frontend Framework), Modern JavaScr
 ## Installing Java, Eclipse & Embedded Maven
 * Playlist - https://www.youtube.com/playlist?list=PLBBog2r6uMCSmMVTW_QmDLyASBvovyAO3
 * Steps
-  0. Overview - Installation Java, Eclipse and Maven
-  1. Installing Java JDK 
-  2. Installing Eclipse IDE
-  3. Using Embedded Maven in Eclipse
-  4. Troubleshooting Java, Eclipse and Maven
+  1. Overview - Installation Java, Eclipse and Maven
+  2. Installing Java JDK 
+  3. Installing Eclipse IDE
+  4. Using Embedded Maven in Eclipse
+  5. Troubleshooting Java, Eclipse and Maven
 ## Troubleshooting Installations
 * Node JS and NPM
   1. https://docs.npmjs.com/common-errors
