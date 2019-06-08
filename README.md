@@ -3,6 +3,7 @@
 This is basic TODO application.
 In this application, we will be using React (Frontend Framework), Modern JavaScript , Create React App(To create React projects),  Spring Boot (REST API Framework), Spring (Dependency Management), Spring Security (Authentication and Authorization - Basic and JWT), BootStrap (Styling Pages), Maven (dependencies management), Node (npm), Visual Studio Code (JavaScript IDE), Eclipse (Java IDE) and Tomcat Embedded Web Server
 
+
 # installation Guide
 * Required Tools
 * Node v8+ for npm
@@ -32,7 +33,7 @@ In this application, we will be using React (Frontend Framework), Modern JavaScr
   2. https://code.visualstudio.com/docs/supporting/FAQ
 * Eclipse and Embedded Maven
   1. PDF : https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf
-  2.GIT Repository For Installation : https://github.com/in28minutes/getting-started-in-5-steps
+  2. GIT Repository For Installation : https://github.com/in28minutes/getting-started-in-5-steps
 ## Getting Started with Spring, Spring Boot and JPA
 * Spring Tutorial for Beginners - https://www.youtube.com/watch?v=edgZo2g-LTM
 * Spring Boot Tutorial for Beginners - https://www.youtube.com/watch?v=pcdpk3Yd1EA
