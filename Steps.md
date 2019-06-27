@@ -54,3 +54,47 @@
    ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render()(is a utility function) will populate the div (with id as root) with App component.
 ```
+## Introduction To React Components
+In the previous step, index.js is trying to render **"App"** component into **"root"** element.
+1. What is Component in React?<br/>
+
+**Ans.** In React, UI can be splits into independent,reusable piece of codes and these pieces of codes are Component.<br/>
+
+2. What does Component contains?<br/>
+
+**Ans.** A typical web application contains Header,footer,Menu,login page, logout page in our case to-do page and etc.<br/>
+Component helps us to design, develop each of independent,reusable piece of code. So we can have Header component,Footer component etc.
+React apps are built using reusable and independent component.
+In react **root** component is typically **App** components.<br/>
+Below is Code for **App.js**
+```
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App Extends Component{
+   render(){
+      return(
+         <div className="App">
+          Hello World!
+         </div>
+      );
+   }
+}
+
+export default App;
+
+```
+### Part Of Component
+1. View--> JSX or javascript
+2. Logic--> javascript
+3. Styling--> CSS
+4. State--> Internal Data Store
+5. Props--> Pass Data
+Below code snippet from **App.js**, tells how div should be structured for View
+```
+<div className="App">
+          Hello World!
+</div>
+```
+Above code is called **JSX** which is an extension of javascript. So in javascript file we are including something like HTML and this is called **JSX**. Instead of JSX we can also use the javascript to code the same thing
