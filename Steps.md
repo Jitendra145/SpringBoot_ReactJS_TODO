@@ -56,6 +56,7 @@
 ```
 ## Introduction To React Components
 In the previous step, index.js is trying to render **"App"** component into **"root"** element.
+![alt text](https://user-images.githubusercontent.com/16119293/60289848-081dd500-9935-11e9-87d8-0fb917aee62a.JPG)
 1. What is Component in React?<br/>
 
 **Ans.** In React, UI can be splits into independent,reusable piece of codes and these pieces of codes are Component.<br/>
@@ -85,7 +86,9 @@ class App Extends Component{
 export default App;
 
 ```
-### Part Of Component
+### Parts Of Component
+![alt text](https://user-images.githubusercontent.com/16119293/60289906-2c79b180-9935-11e9-911b-1b0ae8016ad3.JPG)
+
 1. View--> JSX or javascript
 2. Logic--> javascript
 3. Styling--> CSS
