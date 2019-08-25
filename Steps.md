@@ -100,4 +100,77 @@ Below code snippet from **App.js**, tells how div should be structured for View
           Hello World!
 </div>
 ```
-Above code is called **JSX** which is an extension of javascript. So in javascript file we are including something like HTML and this is called **JSX**. Instead of JSX we can also use the javascript to code the same thing
+Above code is called **JSX** which is an extension of javascript. So in javascript file we are including something like HTML and this is called **JSX**. Instead of JSX we can also use the javascript to code the same thing.
+
+### Step 06 Playing with React class Component
+```
+// App.js
+import React, { Component } from 'react';
+---
+---
+class App extends Component{
+   render(){
+      return(
+         <div className="App">
+                Hello World!
+          <FirstComponent/>// we need to register FirstComponent in order to be visible in App Component
+        </div>
+      );
+  }
+}
+
+class FirstComponent extends Component {
+  render(){
+    return (
+      <div className="myCompo">
+        First Component!		
+      </div>
+    );
+  }
+}
+```
+
+So to create Component, we need to extends **Component** and impliments the **render()** method.
+
+**Note:we need to register FirstComponent in order to be visible in App Component**
+
+
+### Step 07 Introduction To Function Components in React
+
+We should write the Components in separate js file. For  sake of simplicity we are using one js file App.js
+
+**What is Function Component:**
+
+
+```
+class App extends Component{
+   render(){
+      return(
+         <div className="App">
+                Hello World!
+          <FirstComponent/>
+          <SecondComponent>
+          <ThirdComponent/>
+        </div>
+      );
+  }
+}
+
+function ThirdComponent(){
+return(
+   <div className="thirdComponent">
+      Third Component
+   </div>
+);
+}
+```
+### Step 07 Exploring JSX Further- Babel and More
+
+**Babel:** convert the JSX into javascript (javascript compiler to support older verson of js)
+
+Int JSX ever node should be closed.e.g. <br>-->html valid but in JSX invalid
+All the element should be wrapped up in single parent element.
+
+Custom component should start with capital letter in jSX.
+
+whenever isJSX is used, React should be imported.
