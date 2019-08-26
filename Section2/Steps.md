@@ -164,13 +164,67 @@ return(
 );
 }
 ```
-### Step 07 Exploring JSX Further- Babel and More
+### Step 08 Exploring JSX Further- Babel and More
 
 **Babel:** convert the JSX into javascript (javascript compiler to support older verson of js)
 
-Int JSX ever node should be closed.e.g. <br>-->html valid but in JSX invalid
+In JSX every node should be closed.e.g. <br>-->html valid but in JSX invalid
+
 All the element should be wrapped up in single parent element.
 
 Custom component should start with capital letter in jSX.
 
 whenever isJSX is used, React should be imported.
+
+### Step 09 Refactoring Components to individual module and Quick review of JavaS
+So far we have learn to create a component using two ways
+1. Class Component
+2. Function Component
+
+In React **"App"** is the parent component. In our example First,Second etc are child component
+
+In React we define each component is separate file. In javascript any javascript file is called javascript module. So App.js is a module
+So we will put the file in **src** folder. For our purpose we will create a folder **components** inside **src** folder and inside **components** we will again create a folder called **learning examples** and inside that we will create our module.
+
+E.g. First module will be named like **First Component.jsx**. So any js file contaning JSX can be saved with **.jsx extension**. After that we need to import **FirstComponent in App.js** like **import FirstComponent from './components/learning-examples/FirstComponent'** . and we need to use **export default** whenever we are creating Component and we need to use  **import React, { Component } from 'react';** . Our FirstComponent.jsx will look like as follow
+
+```
+import React, { Component } from 'react';
+export default class FirstComponent extends Component {
+  render(){
+    return (
+      <div className="myCompo">
+        First Component!		
+      </div>
+    );
+  }
+}
+```
+We can import default Component directly. For e.g. **import FirstComponent ...** but suppose I have put the second component inside FirstComponent then I cann't directly import it. In this case we need to put that component inside **{}**.
+Example:
+**import FirstComponent,{SecondComponent} from './components/learning-examples/FirstComponent'**
+```
+import React, { Component } from 'react';
+export default class FirstComponent extends Component {
+  render(){
+    return (
+      <div className="myCompo">
+        First Component!		
+      </div>
+    );
+  }
+}
+class SecondComponent extends Component {
+  render(){
+    return (
+      <div className="secondCompo">
+        Second Component!		
+      </div>
+    );
+  }
+}
+```
+So , same we can conclude that **Component** inside **import React, { Component } from 'react';** is not default.Hence we have used curly bracket.
+
+
+
