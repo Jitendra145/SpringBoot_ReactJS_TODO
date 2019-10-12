@@ -116,3 +116,4 @@ export default Counter
 
 ### Step 06 Understanding React - behind the scenes - Virtual DOM
 
+![alt text](https://user-images.githubusercontent.com/16119293/66696984-d7e52100-ecee-11e9-8e5d-a466f6569c71.JPG)
