@@ -2,6 +2,11 @@
 * Create React App
    Use the below link to create the react app
    https://github.com/facebook/create-react-app
+   ```
+   npx create-react-app my-app
+   cd my-app
+   npm start
+   ```
 ## Exploring the React project structure
 * **package.json :** It is similar for Javascript project what POM.xml file for Java project. Here we define the dependency which is required for running the React app.
 1. React can be used for developing Web as well as native app(android and Iphone app)
