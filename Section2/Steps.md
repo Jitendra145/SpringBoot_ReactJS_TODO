@@ -7,6 +7,48 @@
    cd my-app
    npm start
    ```
+   
+## An update to create React App
+1. There are two kinds of components in React 1. Function and 2. Class
+
+### Create React app - Recent update
+
+1. App.js is no longer created as class components. It is switched to Function Component . In this course we have used App.js as class Component.
+
+##### Change You need to Make in Next Step in Visual Studio Code
+
+Replace App.js with code below:
+```
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+ 
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+        </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+        </a>
+        </header>
+      </div>
+    );
+  }
+}
+export default App;
+```
+
+
 ## Exploring the React project structure
 * **package.json :** It is similar for Javascript project what POM.xml file for Java project. Here we define the dependency which is required for running the React app.
 1. React can be used for developing Web as well as native app(android and Iphone app)
