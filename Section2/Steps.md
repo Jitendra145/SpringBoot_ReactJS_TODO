@@ -273,5 +273,20 @@ class SecondComponent extends Component {
 ```
 So , same we can conclude that **Component** inside **import React, { Component } from 'react';** is not default.Hence we have used curly bracket.
 
+## Note
+### What are node modules?
+
+**Ans:** Module in Node.js is a simple or complex functionality organized in single or multiple JavaScript files which can be reused throughout the Node.js application. Each module in Node.js has its own context, so it cannot interfere with other modules or pollute global scope.
+
+### Node_modules folder
+
+**Ans:** You can also see something else new in your directory: a folder named node_modules . node_modules is where npm modules are saved. If you open node_modules , you should see a folder named react , which contains the code that makes React run.
+
+### What is NPM in Reactjs?
+
+**Ans:** It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You'll need to have Node >= 8.10 and npm >= 5.6 on your machine. To create a project, run: npx create-react-app my-app cd my-app npm start.
+
+https://www.google.com/search?q=node+modules+in+reactjs&oq=node+modules+in+react&aqs=chrome.2.69i57j0l5.10136j1j7&sourceid=chrome&ie=UTF-8
+
 
 
