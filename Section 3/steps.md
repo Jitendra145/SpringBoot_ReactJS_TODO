@@ -39,7 +39,7 @@ button{
 In JSX we use attribute in cammel case like **onClick** and we use **{}** to define the method which will be called. OR
 anything in javascript will be put under **{}** in JXS.
 
-In JSX pass the reference , for example **<button onClick={increment}/>** is corret way instead of **<button onClick={increment()}/> **
+In JSX pass the reference , for example ```<button onClick={increment}/> ``` is correct way instead of ```<button onClick={increment()}/> ```
 
 **Counter.jsx**
 ```
@@ -60,7 +60,7 @@ function increment(){
 }
 export default Counter
 ```
-Above onclicking the button above code won't increment the counter. For incrementing the conuter we need to maintain state.
+Above onclicking the button above code won't increment the counter. For incrementing the counter we need to maintain state.
 
 ### Step 05 Adding state to a React Counter Component
 
@@ -71,11 +71,14 @@ converting the funtion component into class component.
 class Counter extends Component{
 render(){
 	return...
-} an dwhi
+} 
 }
 ```
-No we will put the increment function inside the class component.Now this function will become local. So calliing the local method use **this.method**
+Now, we will put the increment function inside the class component.Now this function will become local. So calling the local method use **this.method**
 
+##### If we want **this.state** to be available in method increment(), we need to bind the method to the class(Component) in the constructor
+
+https://stackoverflow.com/questions/38334062/why-do-you-need-to-bind-a-function-in-a-constructor
 ```
 import React, { Component } from 'react';
 import './Counter.css';
@@ -83,7 +86,7 @@ import './Counter.css';
 class Counter extends Component {  
 
   //Define the initial state in constructor
-  //state  ->conuter = 0
+  //state  ->counter = 0
   constructor(){
     super();
     this.state = {
@@ -117,3 +120,93 @@ export default Counter
 ### Step 06 Understanding React - behind the scenes - Virtual DOM
 
 ![alt text](https://user-images.githubusercontent.com/16119293/66696984-d7e52100-ecee-11e9-8e5d-a466f6569c71.JPG)
+
+
+Updating the DOM in quite difficult process. To overcome this React use Logical DOM. For e.g initial state of counter is 5 and after updating it become 6, then for both the scenario React will maintain DOM. Now, React will find out the difference between these two Virtual DOM and update the original DOM based on difference.
+
+### Step 07 Understanding setState and using arrow functions to avoid this binding
+
+```
+constructor(){
+super();
+//Line 1
+this.state = {
+counter : 0,
+secondCounter : 100
+}
+---
+}
+---
+//Line 2
+increment(){
+this.setState({
+counter : this.state.counter+1
+});
+```
+In Line 1 we have we have two value for the state and in Line 2 we are updating only one value. So this won't affect the second value used in (initial) state. 
+
+**=>** is arrow function. It is similar to lambda expression in java.
+
+e.g var list = [1,2,3,4]
+
+list.forEach( x => console.log(x*2) );
+
+When we use **=>** then there is no need to bind the function with **this**
+
+**Before**
+```
+---
+constructor(){
+---
+this.increment = this.increment.bind(this);
+}
+
+increment(){
+---
+}
+```
+**After**
+```
+---
+constructor(){
+---
+//this.increment = this.increment.bind(this);
+}
+
+increment = () => {
+---
+}
+```
+
+**NOTE:** Arrow function prevents the need of using bind() function. setState() merge the final state with initial state
+
+### Step 08 Defining inline javascript and CSS
+
+**Example inline CSS**
+```
+render(){
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+1</button>	
+		<span className="count" style={{fontSize : "50px"}}>{this.state.counter}</span>
+      </div>
+    );
+  }
+```
+**style** will accept the object not string, hence here we used  **{}**
+
+We can write the above code as follow
+```
+render(){
+    const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+1</button>	
+		<span className="count" style={style}>{this.state.counter}</span>
+      </div>
+    );
+  }
+  ```
+  **const/let/var** ??
+  
+
