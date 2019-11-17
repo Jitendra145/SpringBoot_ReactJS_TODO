@@ -209,4 +209,112 @@ render(){
   ```
   **const/let/var** ??
   
+### Step 09 Defining multiple Counter buttons and adding a Component Prop
+
+```
+class App extends Component {
+    render(){
+      return (
+        <div className="App">
+          <LearningComponents />
+        </div>
+      );
+  }
+}
+
+class LearningComponents extends Component {
+	render(){
+		return (
+        <div className="LearningComponents">          
+		 <Counter/> // Line 1
+     		 <Counter /> // Line 2
+        </div>
+      );
+	}
+}
+```
+We can add ```<Counter />``` as above in Line 1 and Line 2 each having different state. But we have problems here
+1. For each button we want separate increment operation
+2. When we clicked on second button we want variable associated with second button to be updated.
+
+**Solution:**
+1. So Once we set up the value(hard coded) we cann't change it. So for that we are going to use **props** to pass the different increment value based on Button clicked.
+
+**App.js**
+```
+class App extends Component {
+    render(){
+      return (
+        <div className="App">
+          <LearningComponents />
+          <Counter by={1} />
+          <Counter by={5} />
+          <Counter by={10} />
+        </div>
+      );
+  }
+}
+```
+**Counter.jsx**
+```
+render(){
+    //const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+{this.props.by}</button>	
+		<span className="count">{this.state.counter}</span>
+      </div>
+    );
+  }
+
+  increment(){//update state counter++
+    console.log('increment');
+    //this.state.counter++;
+    this.setState({
+      counter :this.state.counter + this.props.by
+    });
+  }
+  
+}
+```
+
+### Step 10 Understanding React Component Props - Default Value and Type Constrain
+
+Setting default value to props and checking the type of props
+
+```
+class App extends Component {
+    render(){
+      return (
+        <div className="App">
+          <LearningComponents />
+          <Counter  /> // Line 1
+	  <Counter /> // Line 2
+          <Counter by={5} />
+          <Counter by={10} />
+        </div>
+      );
+  }
+  }
+  ```
+  Counter @ Line 1 and 2 will take default value defined in Counter.jsx
+  
+  ```
+  class Counter extends Component{
+  
+  }
+  
+  Counter.defaultProps = {
+  by : 1
+} 
+ ```
+
+**Checking PropsType:** For Checking Props Type **(1)** import-->```import PropTypes from 'prop-types';``` **(2)**  add the below code outside (Counter class in this case) 
+```
+Counter.propTypes = {
+  by : PropTypes.number
+}
+```
+### Step 11 Using React Developer Tools Chrome Plugins
+
 
