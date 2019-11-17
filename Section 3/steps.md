@@ -740,3 +740,5 @@ CounterButton.propTypes = {
 }
 export default Counter
 ```
+
+**Note:** Whenever you have to pass parameter to event Listener(onClick is event listener) use =>  like in this eg ```<button onClick={()=>this.props.decrementMethod(this.props.by)}>-{this.props.by}</button>```
