@@ -317,4 +317,335 @@ Counter.propTypes = {
 ```
 ### Step 11 Using React Developer Tools Chrome Plugins
 
+Add React Developer tool plugins to chrome
+
+### Step 12 Moving State Up - Refactoring to Counter and Countering Button Components
+
+Here we refactor the code to have a Counter and CounterButton separately. Counter will contains all the button used and our objective is to maintain single count operation (irrespective of button pressed i.e. if we press the two button both should be summed up as single unit (single state))
+
+**App.js**
+```
+class App extends Component {
+  render(){
+      return (
+        <div className="App">        
+          <Counter/>      
+        </div>
+      );
+  }
+}
+```
+
+**Counter.jsx**
+```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Counter.css';
+
+class Counter extends Component{
+  render(){
+      return (
+        <div className="Counter">        
+          <CounterButton  by={1}/>          
+          <CounterButton by={5} />
+          <CounterButton by={10} />
+        </div>
+      );
+  }
+}
+class CounterButton extends Component {  
+
+  //Define the initial state in constructor
+  //state  ->conuter = 0
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+  }
+  render(){
+    //const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+{this.props.by}</button>	
+		<span className="count">{this.state.counter}</span>
+      </div>
+    );
+  }
+
+  increment(){//update state counter++
+    console.log('increment');
+    //this.state.counter++;
+    this.setState({
+      counter :this.state.counter + this.props.by
+    });
+  }
+  
+}
+
+CounterButton.defaultProps = {
+  by : 1
+} 
+CounterButton.propTypes = {
+  by : PropTypes.number
+}
+export default Counter
+```
+
+### Step 13 Moving State Up - Adding state to Counter Component
+
+Example of calling parent method from child--> we are calling increment method in parent from the child using **this.props.incrementMethod** in child(CounterButton)
+```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Counter.css';
+
+class Counter extends Component{
+
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+  }
+
+  render(){
+      return (//passing the increment method to child (CounterButton)
+        <div className="Counter">        
+          <CounterButton  by={1} incrementMethod={this.increment}/>          
+          <CounterButton by={5} incrementMethod={this.increment}/>
+          <CounterButton by={10} incrementMethod={this.increment}/>
+        </div>
+      );
+  }
+
+  increment(){   
+    console.log("Increment from Parent"); 
+    /*this.setState({
+      counter :this.state.counter //+ this.props.by
+    });*/
+  }
+}
+class CounterButton extends Component {  
+
+  //Define the initial state in constructor
+  //state  ->counter = 0
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+  }
+  render(){
+    //const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+{this.props.by}</button>	
+		<span className="count">{this.state.counter}</span>
+      </div>
+    );
+  }
+  
+  increment(){   
+    //console.log("Increment from Parent"); 
+    this.setState({
+      counter :this.state.counter + this.props.by
+    });
+    this.props.incrementMethod();
+  }
+}
+
+CounterButton.defaultProps = {
+  by : 1
+} 
+CounterButton.propTypes = {
+  by : PropTypes.number
+}
+export default Counter
+```
+**Note:** Template literals are string literals allowing embedded expressions. Template literals are enclosed by the back tick(``).
+
+```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Counter.css';
+
+class Counter extends Component{
+
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+  }
+
+  render(){
+      return (//passing the increment method to child (CounterButton)
+        <div className="Counter">        
+          <CounterButton  by={1} incrementMethod={this.increment}/>          
+          <CounterButton by={5} incrementMethod={this.increment}/>
+          <CounterButton by={10} incrementMethod={this.increment}/>
+          <span className="count">{this.state.counter}</span>
+        </div>
+      );
+  }
+
+  increment(by){   
+    console.log(`Increment from Parent - ${by}`); 
+    this.setState({
+      counter :this.state.counter + by
+    });
+  }
+}
+class CounterButton extends Component {  
+
+  //Define the initial state in constructor
+  //state  ->counter = 0
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+  }
+  render(){
+    //const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+{this.props.by}</button>	
+		    <span className="count">{this.state.counter}</span>
+      </div>
+    );
+  }
+  
+  increment(){   
+    //console.log("Increment from Parent"); 
+    this.setState({
+      counter :this.state.counter + this.props.by
+    });
+    this.props.incrementMethod(this.props.by);
+  }
+}
+
+CounterButton.defaultProps = {
+  by : 1
+} 
+CounterButton.propTypes = {
+  by : PropTypes.number
+}
+export default Counter
+```
+
+### Step 14 Best Practice - Using Previous step in setState
+```
+this.setState({
+      counter :this.state.counter + by
+    });
+```
+ Can be rewritten using => function as below
+ ```
+ this.setState(
+        (prevState) => {
+          return {counter : prevState.counter + by }
+        }
+      );
+```
+   
+
+### Step 15 Adding Decrement Buttons and Reset Buttons
+
+```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Counter.css';
+
+class Counter extends Component{
+
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  render(){
+      return (//passing the increment method to child (CounterButton)
+        <div className="Counter">        
+          <CounterButton by={1} incrementMethod={this.increment} decrementMethod={this.decrement}/>                     
+          <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement}/>
+          <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement}/>
+          <span className="count">{this.state.counter}</span>
+          <div><button className="reset" onClick={this.reset}>Reset</button></div>
+        </div>
+      );
+  }
+
+  reset(){
+    this.setState({
+      counter : 0
+    });
+  }
+  increment(by){   
+    console.log(`Increment from Parent - ${by}`); 
+      this.setState(
+        (prevState) => {
+          return {counter :prevState.counter + by }
+        }
+      );
+  }
+  decrement(by){
+    this.setState({
+      counter : this.state.counter - by
+    });
+  }
+}
+class CounterButton extends Component {  
+
+  //Define the initial state in constructor
+  //state  ->counter = 0
+  constructor(){
+    super();
+    this.state = {
+      counter : 0
+    }
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+  }
+  render(){
+    //const style = {fontSize:"50px", padding: "15px 30 px"};
+    return (
+      <div className="counter">
+        <button onClick={this.increment}>+{this.props.by}</button>	
+        <button onClick={this.decrement}>-{this.props.by}</button>	
+		   { /*<span className="count">{this.state.counter}</span>*/}
+      </div>
+    );
+  }
+  decrement(){
+    this.props.decrementMethod(this.props.by);
+  }
+  increment(){       
+    this.setState({
+      counter :this.state.counter + this.props.by
+    });
+    this.props.incrementMethod(this.props.by);
+  }
+}
+
+CounterButton.defaultProps = {
+  by : 1
+} 
+CounterButton.propTypes = {
+  by : PropTypes.number
+}
+export default Counter
+```
+
 
