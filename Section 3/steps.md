@@ -315,6 +315,6 @@ Counter.propTypes = {
   by : PropTypes.number
 }
 ```
+### Step 11 Using React Developer Tools Chrome Plugins
 
-```
 
